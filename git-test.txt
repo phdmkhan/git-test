@@ -2,3 +2,4 @@ git test
 update git test
 update git test
 local B update
+local A update
