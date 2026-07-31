@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}로컬 통합 데이터 분석 대시보드 - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-12 text-center mb-5">
+        <h1 class="display-5 fw-bold">데이터 분석 대시보드 허브</h1>
+        <p class="lead text-muted mt-3">원하는 분석 모듈을 선택하여 상세 결과를 확인하세요.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center g-4">
+    <!-- 보스턴 집값 회귀분석 카드 -->
+    <div class="col-md-5">
+        <a href="/reg" class="card dashboard-card h-100 p-5 text-center text-decoration-none">
+            <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#3498db" class="bi bi-graph-up-arrow" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
+                </svg>
+            </div>
+            <h3 class="fw-bold mb-3">보스턴 집값 회귀분석</h3>
+            <p class="text-muted">독립변수 RM(방 개수)과 종속변수 CMEDV(집값) 간의 OLS 선형 회귀 모형을 분석합니다.</p>
+            <div class="mt-auto pt-3">
+                <span class="btn btn-outline-primary w-100">분석 A 바로가기</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- 전력 소비량 예측 카드 -->
+    <div class="col-md-5">
+        <a href="/tsa" class="card dashboard-card h-100 p-5 text-center text-decoration-none">
+            <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#e67e22" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16">
+                  <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+                </svg>
+            </div>
+            <h3 class="fw-bold mb-3">전력 소비량 예측</h3>
+            <p class="text-muted">Holt-Winters 시계열 알고리즘을 활용하여 향후 1년간의 월별 전력 소비량을 예측합니다.</p>
+            <div class="mt-auto pt-3">
+                <span class="btn btn-outline-warning w-100">분석 B 바로가기</span>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}보스턴 집값 회귀분석 - 분석 A{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="fw-bold mb-3">🏠 보스턴 집값 단순 선형 회귀분석 (OLS)</h2>
+        <p class="text-muted">방의 개수(RM)가 집값(CMEDV)에 미치는 영향을 분석한 결과입니다.</p>
+    </div>
+</div>
+
+{% if boston_stats %}
+<!-- Hypothesis Test UI Rendering Rule -->
+{% if boston_stats.p_value < 0.05 %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="alert alert-success d-flex align-items-center shadow-sm" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-circle-fill me-3 flex-shrink-0" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+            <div>
+                <strong>가설 검정 성공:</strong> 방의 개수(RM)와 집값(CMEDV) 간의 인과관계 가설이 통계적으로 유의미합니다 (p < 0.05).
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row g-4 mb-5">
+    <!-- Stats Section -->
+    <div class="col-12">
+        <div class="card dashboard-card p-4">
+            <h5 class="fw-bold mb-4">주요 회귀 지표 요약</h5>
+            <div class="row text-center g-3">
+                <div class="col-md-4">
+                    <div class="p-4 bg-light rounded h-100">
+                        <div class="stat-label">R-Squared (결정계수)</div>
+                        <div class="stat-value text-primary mt-2">{{ boston_stats.r2 }}</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-light rounded h-100">
+                        <div class="stat-label">Coef (회귀계수)</div>
+                        <div class="stat-value text-primary mt-2">{{ boston_stats.coef }}</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-light rounded h-100">
+                        <div class="stat-label">P-value (유의확률)</div>
+                        <div class="stat-value text-primary mt-2">{{ "%.4f"|format(boston_stats.p_value) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Plot Image -->
+    <div class="col-12">
+        <div class="card dashboard-card p-4">
+            <h5 class="fw-bold mb-4">회귀분석 시각화 패널</h5>
+            <div class="image-container text-center">
+                <img src="{{ boston_plot }}" alt="Boston Housing Scatter Plot" class="img-fluid rounded shadow-sm w-100" style="max-width: 900px;">
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
